@@ -27,4 +27,6 @@ let tankinfoSchema = new Schema ({
     drainpipesexist: Boolean,
   },
   drainpipeproperties: [{type: Schema.Types.ObjectId, ref: 'DrainPipeProperties'}],
+  registered: Boolean
+
 })

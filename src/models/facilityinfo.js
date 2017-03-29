@@ -1,9 +1,8 @@
 import mongoose from 'mongoose';
-import DrP from './drp';
-import PreviousDischarge from './previousdischarge';
+import SPCCPlan from './spccplan';
 let Schema = mongoose.Schema;
 
-let SPCCPlanSchema = new Schema({
+let FacilityInfoSchema = new Schema ({
 
   facilityname: String,
   facilityaddress: {
@@ -20,8 +19,6 @@ let SPCCPlanSchema = new Schema({
     zipcode: String
   },
 
-  drps: [{type: Schema.Types.ObjectId, ref: 'DrP'}],
-
   facilitydescription: String,
   geometry: {
     type: { type: String, default: 'Point' },
@@ -30,6 +27,7 @@ let SPCCPlanSchema = new Schema({
       long: Number
     }
   },
+
   businesstype: String,
   beghours: String,
   endhours: String,
@@ -39,13 +37,6 @@ let SPCCPlanSchema = new Schema({
     beghours: String,
     endhours: String,
     days: String
-  },
-
-  stdquestion: [{type: Schema.Types.ObjectId, ref: 'StdQuestion'}],
-
-  contactinfo: {
-    name: String,
-    phonenumber: String
   },
 
   tankinfo: [{type: Schema.Types.ObjectId, ref: 'TankInfo'}],
@@ -66,7 +57,7 @@ let SPCCPlanSchema = new Schema({
   previousdischarge: [{type: Schema.Types.ObjectId, ref: 'PreviousDischarge'}],
 
   registered: Boolean,
-  totalsitecapacity: Number
-});
 
-module.exports = mongoose.model('SPCCPlan', SPCCPlanSchema);
+})
+
+module.exports = mongoose.model('FacilityInfo', FacilityInfoSchema);

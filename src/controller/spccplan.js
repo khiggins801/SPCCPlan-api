@@ -116,9 +116,10 @@ api.delete('/:id', (req, res) => {
 });
 
 // add DRP to spccplan
-//'/v1/spccplan/drp'
+//'/v1/spccplan/drp/add/id'
 api.post('/drp/add/:id', (req, res) => {
   SPCCPlan.findById(req.params.id, (err, spccplan) => {
+
     if (err) {
       res.send(err);
     }
@@ -130,12 +131,11 @@ api.post('/drp/add/:id', (req, res) => {
     newDRP.locofplan = req.body.locofplan;
     newDRP.alternate = req.body.alternate;
     newDRP.spccplan = spccplan._id;
-    newDRP.save((err, spccplan) => {
+    newDRP.save((err, newDRP) => {
       if (err) {
         res.send(err);
       }
       spccplan.drps.push(newDRP);
-
       spccplan.save(err => {
         if (err) {
           res.send(err);
@@ -207,9 +207,6 @@ api.post('/previousdischarge/add/:id', (req, res) => {
     });
   });
 });
-
-// update drp for a specific Plan
-// '/v1/spccplan/drp/:id'
 
 return api;
 
